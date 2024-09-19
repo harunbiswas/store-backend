@@ -5,7 +5,7 @@ const _ = require('lodash');
 
 
 const registerController = async (req, res) => {
-    const { username, email, password } = req.body;
+   
   
     try {
   

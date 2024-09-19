@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = require('./router/userRouter')
+const movieRoutes = require('./router/movieRouter')
 
 
 
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGO_URI)
   })
 
   app.use('/user',userRoutes )
+  app.use('/movie',movieRoutes )
 
 
  
