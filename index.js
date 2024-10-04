@@ -5,14 +5,16 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = require('./router/userRouter')
 const movieRoutes = require('./router/movieRouter')
-
+const allowCors = require('./middleware/cors')
 
 
 env.config()
 const PORT = process.env.PORT || 3000;
 const app = express()
 app.use(bodyParser.json())
-app.options('*', cors()); 
+
+app.use(allowCors)
+
 
 app.use(cors({
   origin: ['http://localhost:5173', 'https://movie-dashboard-delta.vercel.app'], // Allowed domains
