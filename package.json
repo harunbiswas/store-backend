@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "start": "node index",
-    "dev": "sudo systemctl start mongod && nodemon index"
+    "dev": " nodemon index"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
