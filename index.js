@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = require('./router/userRouter')
 const movieRoutes = require('./router/movieRouter')
-const allowCors = require('./middleware/cors')
+
 
 
 env.config()
@@ -13,15 +13,22 @@ const PORT = process.env.PORT || 3000;
 const app = express()
 app.use(bodyParser.json())
 
-app.use(allowCors)
 
+const allowedOrigins = ['http://localhost:5173', 'https://movie-dashboard-delta.vercel.app'];
 
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://movie-dashboard-delta.vercel.app'], // Allowed domains
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers in incoming requests
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-}));
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+};
+
+app.use(cors(corsOptions));
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
