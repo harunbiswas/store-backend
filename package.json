@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "start": "node index",
-    "dev": " nodemon index"
+    "dev": " nodemon index",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
