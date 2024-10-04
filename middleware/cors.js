@@ -1,4 +1,4 @@
-const allowCors = fn => async (req, res) => {
+const allowCors = fn => async (req, res, next) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
     // another common pattern
@@ -12,12 +12,12 @@ const allowCors = fn => async (req, res) => {
       res.status(200).end()
       return
     }
-    return await fn(req, res)
+    return await fn(req, res, next)
   }
   
-  const handler = (req, res) => {
-    const d = new Date()
-    res.end(d.toString())
+  const handler = (req, res, next) => {
+   next()
+   
   }
   
   module.exports = allowCors(handler)
