@@ -2,7 +2,7 @@ const Movies = require("../models/Movies")
 const mongoose = require('mongoose')
 
 
-// add router
+// add  movie
 const addMovie=async (req, res)=> {
     try{
         const movie =new Movies(req.body)
@@ -13,7 +13,7 @@ const addMovie=async (req, res)=> {
     }
 }
 
-// add router
+// get movies 
 const getMovies=async (req, res)=> {
     try{
        
@@ -24,6 +24,8 @@ const getMovies=async (req, res)=> {
     }
 }
 
+
+// get single movie 
 const getMovie = async (req, res) => {
     try {
       const { id } = req.query;
@@ -48,5 +50,26 @@ const getMovie = async (req, res) => {
     }
   };
 
+// get single movie by imdb id
+  const getMovieIID = async (req, res) => {
+    try {
+      const { imdbID } = req.query;
 
-module.exports={addMovie, getMovies, getMovie}
+   
+      // Fetch the movie by ID
+      const result = await Movies.find({imdbID});
+  
+      // If the movie is not found, return a 404 response
+      if (!result) {
+      
+        return res.status(404).json({ message: 'Movie not found' });
+      }
+  
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  };
+
+
+module.exports={addMovie, getMovies, getMovie, getMovieIID}

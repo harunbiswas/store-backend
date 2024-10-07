@@ -1,6 +1,6 @@
 // add movie
 const express = require('express')
-const { addMovie, getMovies, getMovie } = require('../controller/movieController')
+const { addMovie, getMovies, getMovie, getMovieIID } = require('../controller/movieController')
 const authGuard = require('../middleware/authGuard')
 
 const router = express.Router()
@@ -10,6 +10,7 @@ const router = express.Router()
 router.post('/add',authGuard, addMovie)
 router.get('/gets',authGuard, getMovies)
 router.get('/get',authGuard, getMovie)
+router.get('/get',authGuard, getMovieIID)
 
 
 
