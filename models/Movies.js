@@ -30,6 +30,7 @@ const MovieSchema = new mongoose.Schema({
   BoxOffice: { type: String },
   Production: { type: String },
   Website: { type: String },
+  LowUrl: { type: String},
   HdUrl: { type: String},
   FullHdUrl: { type: String},
   QhdUrl: { type: String},
