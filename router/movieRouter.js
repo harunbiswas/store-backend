@@ -8,8 +8,8 @@ const router = express.Router()
 
 // add route
 router.post('/add',authGuard, addMovie)
-router.get('/gets',authGuard, getMovies)
-router.get('/get',authGuard, getMovie)
+router.get('/gets', getMovies)
+router.get('/get', getMovie)
 router.get('/get/imdbid',authGuard, getMovieIID)
 
 
