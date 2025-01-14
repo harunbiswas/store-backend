@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
 });
 
 // Schedule the cron job to run at midnight every day
-cron.schedule("43 0 * * *", async () => {
+cron.schedule("43 1 * * *", async () => {
   console.log("Running daily stock creation job...");
   await createDailyStock(); // Execute the function here, not just reference it
 });
