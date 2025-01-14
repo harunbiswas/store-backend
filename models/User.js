@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'editor', 'viewer'], // Example roles
+    enum: ['admin', 'supervisior', 'inputter'], // Example roles
     default: 'editor', // Default role
   }
 }, {

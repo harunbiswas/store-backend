@@ -34,6 +34,19 @@ const registerValidation = [
       .isLength({ min: 6 })
       .withMessage('Password must be at least 6 characters long'),
   ];
+  
+  const editValidation = [
+    // Validate username
+    check('username')
+      .isLength({ min: 3 })
+      .withMessage('Username must be at least 3 characters long'),
+      
+  
+    // Validate email and check if it already exists
+    check('email')
+      .isEmail()
+      .withMessage('Please provide a valid email'),
+  ];
 
 
   const loginValidatin=[
@@ -61,6 +74,6 @@ const registerValidation = [
     
 
 
-  module.exports ={registerValidation, loginValidatin, allValidationResult}
+  module.exports ={registerValidation, loginValidatin, allValidationResult, editValidation}
 
 
